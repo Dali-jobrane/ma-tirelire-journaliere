@@ -77,58 +77,58 @@ export const NotesSection = () => {
 
   return (
     <div className="space-y-6">
-      {/* Header */}
-      <div className="text-center py-6">
-        <h2 className="text-3xl font-bold text-foreground mb-2">Notes Quotidiennes</h2>
-        <div className="inline-flex items-center gap-2 bg-gradient-accent text-accent-foreground px-6 py-3 rounded-xl shadow-glow">
-          <Calculator className="h-6 w-6" />
-          <span className="text-2xl font-bold">Total: {totalAmount.toFixed(2)}€</span>
+      {/* Header mobile optimisé */}
+      <div className="text-center py-4">
+        <h2 className="text-2xl font-bold text-foreground mb-3">Notes Quotidiennes</h2>
+        <div className="inline-flex items-center gap-2 bg-gradient-accent text-accent-foreground px-4 py-3 rounded-xl shadow-glow">
+          <Calculator className="h-5 w-5" />
+          <span className="text-xl font-bold">Total: {totalAmount.toFixed(2)}€</span>
         </div>
       </div>
 
-      {/* Statistiques rapides */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+      {/* Statistiques compactes */}
+      <div className="grid grid-cols-3 gap-2 mb-4">
         <Card className="bg-gradient-primary text-primary-foreground border-0">
-          <CardContent className="p-4 text-center">
-            <Sun className="h-8 w-8 mx-auto mb-2" />
-            <p className="text-sm opacity-90">Notes Matin</p>
-            <p className="text-xl font-bold">
+          <CardContent className="p-3 text-center">
+            <Sun className="h-6 w-6 mx-auto mb-1" />
+            <p className="text-xs opacity-90">Matin</p>
+            <p className="text-sm font-bold">
               {notes.filter(n => n.period === "matin").length}
             </p>
           </CardContent>
         </Card>
         
         <Card className="bg-secondary text-secondary-foreground border-0">
-          <CardContent className="p-4 text-center">
-            <Moon className="h-8 w-8 mx-auto mb-2" />
-            <p className="text-sm opacity-90">Notes Soir</p>
-            <p className="text-xl font-bold">
+          <CardContent className="p-3 text-center">
+            <Moon className="h-6 w-6 mx-auto mb-1" />
+            <p className="text-xs opacity-90">Soir</p>
+            <p className="text-sm font-bold">
               {notes.filter(n => n.period === "soir").length}
             </p>
           </CardContent>
         </Card>
         
         <Card className="bg-muted border-0">
-          <CardContent className="p-4 text-center">
-            <StickyNote className="h-8 w-8 mx-auto mb-2" />
-            <p className="text-sm text-muted-foreground">Total Notes</p>
-            <p className="text-xl font-bold">{notes.length}</p>
+          <CardContent className="p-3 text-center">
+            <StickyNote className="h-6 w-6 mx-auto mb-1" />
+            <p className="text-xs text-muted-foreground">Total</p>
+            <p className="text-sm font-bold">{notes.length}</p>
           </CardContent>
         </Card>
       </div>
 
-      {/* Formulaire d'ajout */}
-      <Card className="shadow-card">
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
+      {/* Formulaire mobile optimisé */}
+      <Card className="shadow-card mb-4">
+        <CardHeader className="pb-3">
+          <CardTitle className="flex items-center gap-2 text-lg">
             <Plus className="h-5 w-5" />
-            Nouvelle Note Quotidienne
+            Nouvelle Note
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="space-y-3">
             <div>
-              <Label htmlFor="note-amount">Montant (€)</Label>
+              <Label htmlFor="note-amount" className="text-sm font-medium">Montant (€)</Label>
               <Input
                 id="note-amount"
                 type="number"
@@ -136,13 +136,13 @@ export const NotesSection = () => {
                 value={amount}
                 onChange={(e) => setAmount(e.target.value)}
                 placeholder="0.00"
-                className="mt-1"
+                className="mt-1 h-12 text-lg"
               />
             </div>
             <div>
-              <Label htmlFor="period">Période</Label>
+              <Label htmlFor="period" className="text-sm font-medium">Période</Label>
               <Select value={period} onValueChange={(value: "matin" | "soir") => setPeriod(value)}>
-                <SelectTrigger className="mt-1">
+                <SelectTrigger className="mt-1 h-12">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
@@ -161,16 +161,15 @@ export const NotesSection = () => {
                 </SelectContent>
               </Select>
             </div>
-            <div className="flex items-end">
-              <Button
-                onClick={addNote}
-                className="w-full bg-gradient-primary hover:bg-primary/90"
-              >
-                <Plus className="h-4 w-4 mr-2" />
-                Ajouter Note
-              </Button>
-            </div>
           </div>
+          
+          <Button
+            onClick={addNote}
+            className="w-full h-12 bg-gradient-primary hover:bg-primary/90 font-medium"
+          >
+            <Plus className="h-4 w-4 mr-2" />
+            Ajouter Note
+          </Button>
         </CardContent>
       </Card>
 

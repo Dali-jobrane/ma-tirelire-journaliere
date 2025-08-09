@@ -123,5 +123,37 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+    /* Optimisations mobiles */
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    touch-action: manipulation;
+  }
+
+  /* Améliorer les interactions tactiles */
+  button, 
+  [role="button"],
+  input,
+  select,
+  textarea {
+    -webkit-user-select: auto;
+    -moz-user-select: auto;
+    -ms-user-select: auto;
+    user-select: auto;
+  }
+
+  /* Scrolling fluide iOS */
+  * {
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Optimisation des transitions pour mobile */
+  @media (prefers-reduced-motion: no-preference) {
+    * {
+      transition: var(--transition-smooth);
+    }
   }
 }

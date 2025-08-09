@@ -79,54 +79,54 @@ export const PiggyBankSection = () => {
 
   return (
     <div className="space-y-6">
-      {/* Header avec solde */}
-      <div className="text-center py-6">
-        <h2 className="text-3xl font-bold text-foreground mb-2">Tirelire</h2>
-        <div className="inline-flex items-center gap-2 bg-gradient-primary text-primary-foreground px-6 py-3 rounded-xl shadow-glow">
-          <Euro className="h-6 w-6" />
-          <span className="text-2xl font-bold">{balance.toFixed(2)}€</span>
+      {/* Header avec solde optimisé mobile */}
+      <div className="text-center py-4">
+        <h2 className="text-2xl font-bold text-foreground mb-3">Tirelire</h2>
+        <div className="inline-flex items-center gap-2 bg-gradient-primary text-primary-foreground px-4 py-3 rounded-xl shadow-glow">
+          <Euro className="h-5 w-5" />
+          <span className="text-xl font-bold">{balance.toFixed(2)}€</span>
         </div>
       </div>
 
-      {/* Statistiques */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+      {/* Statistiques en grille mobile */}
+      <div className="grid grid-cols-3 gap-2 mb-4">
         <Card className="bg-gradient-accent text-accent-foreground border-0">
-          <CardContent className="p-4 text-center">
-            <TrendingUp className="h-8 w-8 mx-auto mb-2" />
-            <p className="text-sm opacity-90">Total Dépôts</p>
-            <p className="text-xl font-bold">+{totalDepots.toFixed(2)}€</p>
+          <CardContent className="p-3 text-center">
+            <TrendingUp className="h-6 w-6 mx-auto mb-1" />
+            <p className="text-xs opacity-90">Dépôts</p>
+            <p className="text-sm font-bold">+{totalDepots.toFixed(0)}€</p>
           </CardContent>
         </Card>
         
         <Card className="bg-warning text-warning-foreground border-0">
-          <CardContent className="p-4 text-center">
-            <MinusCircle className="h-8 w-8 mx-auto mb-2" />
-            <p className="text-sm opacity-90">Total Dépenses</p>
-            <p className="text-xl font-bold">-{totalDepenses.toFixed(2)}€</p>
+          <CardContent className="p-3 text-center">
+            <MinusCircle className="h-6 w-6 mx-auto mb-1" />
+            <p className="text-xs opacity-90">Dépenses</p>
+            <p className="text-sm font-bold">-{totalDepenses.toFixed(0)}€</p>
           </CardContent>
         </Card>
         
         <Card className="bg-muted border-0">
-          <CardContent className="p-4 text-center">
-            <History className="h-8 w-8 mx-auto mb-2" />
-            <p className="text-sm text-muted-foreground">Transactions</p>
-            <p className="text-xl font-bold">{transactions.length}</p>
+          <CardContent className="p-3 text-center">
+            <History className="h-6 w-6 mx-auto mb-1" />
+            <p className="text-xs text-muted-foreground">Total</p>
+            <p className="text-sm font-bold">{transactions.length}</p>
           </CardContent>
         </Card>
       </div>
 
-      {/* Formulaire d'ajout */}
-      <Card className="shadow-card">
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
+      {/* Formulaire mobile optimisé */}
+      <Card className="shadow-card mb-4">
+        <CardHeader className="pb-3">
+          <CardTitle className="flex items-center gap-2 text-lg">
             <PlusCircle className="h-5 w-5" />
             Nouvelle Transaction
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="space-y-3">
             <div>
-              <Label htmlFor="amount">Montant (€)</Label>
+              <Label htmlFor="amount" className="text-sm font-medium">Montant (€)</Label>
               <Input
                 id="amount"
                 type="number"
@@ -134,36 +134,36 @@ export const PiggyBankSection = () => {
                 value={amount}
                 onChange={(e) => setAmount(e.target.value)}
                 placeholder="0.00"
-                className="mt-1"
+                className="mt-1 h-12 text-lg"
               />
             </div>
             <div>
-              <Label htmlFor="description">Description</Label>
+              <Label htmlFor="description" className="text-sm font-medium">Description</Label>
               <Input
                 id="description"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
-                placeholder="Décrivez la transaction..."
-                className="mt-1"
+                placeholder="Décrivez..."
+                className="mt-1 h-12"
               />
             </div>
           </div>
           
-          <div className="flex gap-3 pt-2">
+          <div className="grid grid-cols-2 gap-3 pt-2">
             <Button
               onClick={() => addTransaction("depot")}
-              className="flex-1 bg-gradient-accent hover:bg-accent/90 text-accent-foreground"
+              className="h-12 bg-gradient-accent hover:bg-accent/90 text-accent-foreground font-medium"
             >
               <PlusCircle className="h-4 w-4 mr-2" />
-              Ajouter Dépôt
+              Dépôt
             </Button>
             <Button
               onClick={() => addTransaction("depense")}
               variant="destructive"
-              className="flex-1"
+              className="h-12 font-medium"
             >
               <MinusCircle className="h-4 w-4 mr-2" />
-              Enregistrer Dépense
+              Dépense
             </Button>
           </div>
         </CardContent>
